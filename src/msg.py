@@ -5,7 +5,7 @@ from email.mime.text import MIMEText
 def create_raw_message(sender, recipients, subject, html):
     msg = MIMEMultipart('mixed')
     msg['From'] = sender
-    msg['To'] = recipients[0] # what is the syntax for multiple recipients?
+    msg['To'] = ','.join(recipients)
     msg['Subject'] = subject
 
     msg_body = MIMEMultipart('alternative')
