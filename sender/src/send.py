@@ -10,7 +10,7 @@ from utils import open_csv_file, open_html_file
 
 load_dotenv()
 
-EMAIL_SUBJECT = 'Test'
+EMAIL_SUBJECT = 'Zażółć gęślą jaźń'
 EMAIL_SENDER = os.getenv('EMAIL_SENDER')
 
 def _get_recipients(arg):

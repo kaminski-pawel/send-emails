@@ -33,7 +33,11 @@ Please abstain from writing your own html file as you would with web pages. Emai
 
 ### 2. Send the generated html to recipients by AWS SES
 
-To send the email run (assuming you are at the root of the project):
+To send the email:
+
+1. set the email Subject in sender/src/send.py, variable EMAIL_SUBJECT
+
+2. run (assuming you are at the root of the project):
 
 `python sender/src/send.py 'to@example.com' 'path/to/mail-template.html'`
 
