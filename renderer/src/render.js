@@ -23,16 +23,24 @@ const renderer = require("vue-server-renderer").createRenderer({
     </mjml>`,
 });
 
+const getCurrentDate = () => new Date(Date.now()).toISOString();
+
 renderer.renderToString(app).then((html) => {
   const htmlWithoutDataServerRenderedAttribute = html.replace(
     `data-server-rendered="true"`,
     ""
   );
   const plainHtml = mjml2html(htmlWithoutDataServerRenderedAttribute);
-  fs.writeFile("example.html", plainHtml.html, function (err, data) {
-    if (err) {
-      return console.log(err);
+  fs.writeFile(
+    `output_${getCurrentDate()}.html`,
+    plainHtml.html,
+    function (err, data) {
+      if (err) {
+        return console.log(err);
+      }
+      console.log(
+        `Generated the file output_${getCurrentDate()}.html. ${data}`
+      );
     }
-    console.log(data);
-  });
+  );
 });
