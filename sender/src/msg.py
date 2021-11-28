@@ -10,7 +10,7 @@ def create_raw_message(sender, recipients, subject, html):
     msg['Subject'] = Header(subject, 'utf-8')
 
     msg_body = MIMEMultipart('alternative')
-    msg_body.attach(MIMEText(html, 'html', 'utf-8'))
+    msg_body.attach(MIMEText(html.encode('ansi'), 'html', 'utf-8'))
     msg.attach(msg_body)
     # TODO: attachments
     # from email.mime.application import MIMEApplication
