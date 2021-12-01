@@ -4,7 +4,7 @@ const fs = require("fs");
 
 const app = new Vue({
   data: {
-    logo: "mojeanalizy.pl",
+    logo: "Zażółć gęślą jaźń",
   },
   template: `
   <mj-section>
@@ -23,7 +23,7 @@ const renderer = require("vue-server-renderer").createRenderer({
     </mjml>`,
 });
 
-const getCurrentDate = () => new Date(Date.now()).toISOString();
+const getCurrentDate = () => new Date(Date.now()).toISOString().split("T")[0];
 
 renderer.renderToString(app).then((html) => {
   const htmlWithoutDataServerRenderedAttribute = html.replace(
