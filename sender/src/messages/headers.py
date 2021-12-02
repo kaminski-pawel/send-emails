@@ -27,4 +27,5 @@ class MailHeaders:
         self._headers['To'] = ','.join(_recipients['ToAddresses'])
 
     def set_subject(self, value: str) -> None:
-        self._headers['Subject'] = Header(value, self._encoding)
+        encoded_val = value.encode('ansi').decode('utf-8')
+        self._headers['Subject'] = Header(encoded_val, self._encoding)

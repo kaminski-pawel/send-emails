@@ -22,8 +22,6 @@ class Message:
     def _get_email_message(self) -> MIMEMultipart:
         msg = MIMEMultipart('mixed')
         msg['From'] = self.headers['From']
-        # for header, value in self.headers:
-        #     msg[header] = value
         msg['To'] = self.headers['To']
         msg['Subject'] = self.headers['Subject']
         return msg
@@ -42,21 +40,3 @@ class Message:
 
     def as_string(self) -> str:
         return self.msg.as_string()
-
-"""
-def create_raw_message(sender, recipients, subject, html):
-    msg = MIMEMultipart('mixed')
-    msg['From'] = sender
-    msg['To'] = ','.join(recipients)
-    msg['Subject'] = Header(subject, 'utf-8')
-
-    msg_body = MIMEMultipart('alternative')
-    msg_body.attach(MIMEText(html.encode('ansi'), 'html', 'utf-8'))
-    msg.attach(msg_body)
-    # TODO: attachments
-    # from email.mime.application import MIMEApplication
-    # attachment_msg = MIMEApplication(attachment)
-    # attachment_msg.add_header('Content-Disposition', 'attachment', filename=attachment_filename)
-    # msg.attach(attachment_msg)
-    return msg.as_string()
-"""

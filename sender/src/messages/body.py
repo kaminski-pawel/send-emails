@@ -24,14 +24,6 @@ class MailBody:
     def _set_html(self, value: str) -> None:
         self._html_part = Template(value).render(**self._context)
     
-    # def _set_beautiful_soup(self) -> None:
-    # def _set_email_subject(self) -> None:
-    #     if self._soup.title:
-    #         self.subject = self._soup.title
-    #     else:
-    #         while not self.subject or not self.subject.strip():
-    #             self.subject = input('Please type email subject >> ')
-
     def to_html(self) -> str:
         return self._html_part
 

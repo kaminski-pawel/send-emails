@@ -14,38 +14,28 @@ load_dotenv()
 def parse_arguments():
     parser = argparse.ArgumentParser(description='X')
     parser.add_argument('-H', '--html', required=True, help='')
-    parser.add_argument('-r', '--recipients', required=True, help='')
-    parser.add_argument('-c', '--context', help='')
-    parser.add_argument('-s', '--subject', required=True, help='')
+    parser.add_argument('-c', '--options', required=True, help='')
     return parser.parse_args()
 
-def send_email(args):
-    client = boto3.client('ses', 'eu-central-1')
-    
-    # recipients = Recipients()
-    # recipients.add(open_json_file(args.recipients)[0]) # TODO: iter
 
+def send_emails(args):
+    for email_data in open_json_file(args.options)[:1]:
+        send_email(args, email_data)
+
+def send_email(args, email_data):
     headers = MailHeaders()
     headers.set_sender(os.getenv('EMAIL_SENDER'))
-    headers.set_subject(args.subject)
-    headers.set_recipients(open_json_file(args.recipients)[0]) # TODO: iter
+    headers.set_subject(email_data['Subject'])
+    headers.set_recipients(email_data['Destinations'])
 
     body = MailBody()
-    if args.context:
-        body.set_context(open_json_file(args.context))
+    body.set_context(email_data['Context'] or {})
     body.set_contents(open_html_file(args.html))
 
-    msg = Message(headers, body)
-    send_raw_email(client, msg)
+    message = Message(headers, body)
+    send_raw_email(boto3.client('ses', 'eu-central-1'), message)
 
-
-    # sender = EMAIL_SENDER
-    # client = boto3.client('ses', 'eu-central-1')
-    # recipients = _get_recipients(sys.argv[1])
-    # html = open_html_file(sys.argv[2])
-    # message = create_raw_message(sender, recipients, EMAIL_SUBJECT, html)
-    # send_raw_email(client, sender, recipients, message)
 
 if __name__ == '__main__':
     args = parse_arguments()
-    send_email(args)
+    send_emails(args)
