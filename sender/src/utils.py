@@ -1,5 +1,11 @@
 import csv
+import json
 
+
+def open_json_file(filename):
+    with open(filename, 'r') as file:
+        data = json.load(file)
+    return data
 
 def open_html_file(filename):
     with open(filename, 'r') as file:
