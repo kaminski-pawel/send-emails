@@ -2,18 +2,13 @@ import argparse
 import boto3
 from dotenv import load_dotenv
 import os
-import sys
 
-# from aws.ses import send_raw_email
-# from msg import create_raw_message
-# from utils import open_csv_file, open_html_file
-# def _get_recipients(arg):
-#     return open_csv_file(arg) if os.path.isfile(arg) else [arg]
+from aws.ses import send_raw_email
+from messages import Message, MailBody, MailHeaders
+from utils import open_html_file, open_json_file
 
 
 load_dotenv()
-EMAIL_SENDER = os.getenv('EMAIL_SENDER')
-
 
 
 def parse_arguments():
@@ -25,9 +20,25 @@ def parse_arguments():
     return parser.parse_args()
 
 def send_email(args):
-    print('args', args)
-    print('EMAIL_SENDER', EMAIL_SENDER)
-    pass
+    client = boto3.client('ses', 'eu-central-1')
+    
+    # recipients = Recipients()
+    # recipients.add(open_json_file(args.recipients)[0]) # TODO: iter
+
+    headers = MailHeaders()
+    headers.set_sender(os.getenv('EMAIL_SENDER'))
+    headers.set_subject(args.subject)
+    headers.set_recipients(open_json_file(args.recipients)[0]) # TODO: iter
+
+    body = MailBody()
+    if args.context:
+        body.set_context(open_json_file(args.context))
+    body.set_contents(open_html_file(args.html))
+
+    msg = Message(headers, body)
+    send_raw_email(client, msg)
+
+
     # sender = EMAIL_SENDER
     # client = boto3.client('ses', 'eu-central-1')
     # recipients = _get_recipients(sys.argv[1])
