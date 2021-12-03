@@ -2,7 +2,7 @@ from botocore.client import BaseClient
 from botocore.exceptions import ClientError
 from typing import Any
 
-from messages import Message
+from src.messages import Message
 
 
 def send_raw_email(client: BaseClient, message: Message) -> None:

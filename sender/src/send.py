@@ -4,9 +4,9 @@ from dotenv import load_dotenv
 import os
 from typing import Any, Dict
 
-from aws.ses import send_raw_email
-from messages import Message, MailBody, MailHeaders
-from utils import open_html_file, open_json_file
+from src.aws.ses import send_raw_email
+from src.messages import Message, MailBody, MailHeaders
+from src.utils import open_html_file, open_json_file
 
 
 load_dotenv()

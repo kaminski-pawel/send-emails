@@ -2,13 +2,13 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from typing import Any, List
 
-from .body import MailBody
-from .headers import MailHeaders
+from src.messages.body import MailBody
+from src.messages.headers import MailHeaders
 
 
 class Message:
     """email.EmailMessage representation"""
-    
+
     def __init__(self, headers: MailHeaders, body: MailBody) -> None:
         self.encoding = 'utf-8'
         self.headers = headers
