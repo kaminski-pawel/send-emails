@@ -15,7 +15,7 @@ class MailHeaders:
         return self._headers[key]
 
     def __iter__(self):
-        return iter(self.__dict__)
+        return iter(self._headers)
 
     def items(self):
         return self._headers.items()
