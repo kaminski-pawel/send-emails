@@ -77,6 +77,14 @@ Before any mass mailing action please read the tips and best practices below.
 
 ...
 
+## QA:
+
+##### Flake8
+
+Covers pep8 compliance and McCabe code complexity measure.
+
+`flake8 sender`
+
 ## TODO:
 
 If needed, the project can be expanded with the following features:

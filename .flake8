@@ -1,0 +1,52 @@
+[flake8]
+max-line-length = 120
+exclude =
+  migrations,
+  __pychache__,
+  manage.py,
+  settings.py,
+ignore = E115,E116,E122,E123,E124,E125,E126,127,128,E129,E131,E133,E231,E261,E302,E501,E701,E704,E721,E731,W291
+# Check out docs in https://www.flake8rules.com/rules/{code}.html
+
+# An indented block comment was expected but a non-indented block comment was found instead
+# https://www.flake8rules.com/rules/E115.html
+# Comments should be indented relative to the code in the block they are in
+# https://www.flake8rules.com/rules/E116.html
+# Continuation line missing indentation or outdented
+# https://www.flake8rules.com/rules/E122.html
+# Closing bracket does not match indentation of opening bracket's line
+# https://www.flake8rules.com/rules/E123.html
+# Closing bracket does not match visual indentation
+# https://www.flake8rules.com/rules/E124.html
+# Continuation line with same indent as next logical line
+# https://www.flake8rules.com/rules/E125.html
+# Continuation line over-indented for hanging indent
+# https://www.flake8rules.com/rules/E126.html
+# Continuation line over-indented for visual indent
+# https://www.flake8rules.com/rules/E127.html
+# Continuation line under-indented for visual indent
+# https://www.flake8rules.com/rules/E128.html
+# Visually indented line with same indent as next logical line
+# https://www.flake8rules.com/rules/E129.html
+# Continuation line unaligned for hanging indent
+# https://www.flake8rules.com/rules/E131.html
+# Closing bracket is missing indentation
+# https://www.flake8rules.com/rules/E133.html
+# Missing whitespace after ',', ';', or ':'
+# https://www.flake8rules.com/rules/E231.html
+# At least two spaces before inline comment
+# https://www.flake8rules.com/rules/E261.html
+# Two blank lines are expected between functions and classes
+# https://www.flake8rules.com/rules/E302.html
+# Line lengths are recommended to be no greater than 79 characters
+# https://www.flake8rules.com/rules/E501.html
+# Multiple statements on one line (colon)
+# https://www.flake8rules.com/rules/E701.html
+# Multiple statements of a function definition should be on their own separate lines
+# https://www.flake8rules.com/rules/E704.html
+# Do not compare types, use 'isinstance()'
+# https://www.flake8rules.com/rules/E721.html
+# https://www.flake8rules.com/rules/E731.html
+# Do not assign a lambda expression, use a def
+# https://www.flake8rules.com/rules/W291.html
+# There should be no whitespace after the final character in a line
