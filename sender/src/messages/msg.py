@@ -1,6 +1,6 @@
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from typing import Any
+from typing import Any, List
 
 from .body import MailBody
 from .headers import MailHeaders
@@ -40,3 +40,6 @@ class Message:
 
     def as_string(self) -> str:
         return self.msg.as_string()
+
+    def list_receivers(self, key: str) -> List[str]:
+        return self.msg[key].split(',')
