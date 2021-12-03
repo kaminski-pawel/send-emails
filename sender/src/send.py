@@ -24,19 +24,19 @@ def parse_arguments():
 def send_emails(args: argparse.Namespace) -> None:
     html = open_html_file(args.html)
     for email_data in open_json_file(args.options):
-        send_email(email_data, html)
+        send_email(prepare_message(email_data, html))
 
-def send_email(email_data: Dict[str, Any], html: str) -> None:
+def prepare_message(email_data: Dict[str, Any], html: str) -> None:
     headers = MailHeaders()
     headers.set_sender(os.getenv('EMAIL_SENDER'))
     headers.set_subject(email_data['Subject'])
     headers.set_recipients(email_data['Destinations'])
-
     body = MailBody()
     body.set_context(email_data['Context'] or {})
     body.set_contents(html)
+    return Message(headers, body)
 
-    message = Message(headers, body)
+def send_email(message: Message) -> None:
     send_raw_email(boto3.client('ses', 'eu-central-1'), message)
 
 
