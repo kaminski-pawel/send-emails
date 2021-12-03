@@ -2,6 +2,7 @@ import argparse
 import boto3
 from dotenv import load_dotenv
 import os
+from typing import Any, Dict
 
 from aws.ses import send_raw_email
 from messages import Message, MailBody, MailHeaders
@@ -20,11 +21,12 @@ def parse_arguments():
         help='Indicate json file with options (default: options.json).')
     return parser.parse_args()
 
-def send_emails(args):
+def send_emails(args: argparse.Namespace) -> None:
+    html = open_html_file(args.html)
     for email_data in open_json_file(args.options):
-        send_email(args, email_data)
+        send_email(email_data, html)
 
-def send_email(args, email_data):
+def send_email(email_data: Dict[str, Any], html: str) -> None:
     headers = MailHeaders()
     headers.set_sender(os.getenv('EMAIL_SENDER'))
     headers.set_subject(email_data['Subject'])
@@ -32,7 +34,7 @@ def send_email(args, email_data):
 
     body = MailBody()
     body.set_context(email_data['Context'] or {})
-    body.set_contents(open_html_file(args.html))
+    body.set_contents(html)
 
     message = Message(headers, body)
     send_raw_email(boto3.client('ses', 'eu-central-1'), message)
