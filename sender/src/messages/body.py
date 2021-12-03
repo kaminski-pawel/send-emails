@@ -23,7 +23,7 @@ class MailBody:
 
     def _set_html(self, value: str) -> None:
         self._html_part = Template(value).render(**self._context)
-    
+
     def to_html(self) -> str:
         return self._html_part
 
@@ -32,7 +32,7 @@ class MailBody:
 
     def _set_text(self) -> None:
         if self._html_part is None:
-            raise HtmlIsNotSetException('Html must be set before text part. ' \
+            raise HtmlIsNotSetException('Html must be set before text part. '
                                         'Run set_html(_html) first.')
         _soup = BeautifulSoup(self._html_part, 'html.parser')
         self._text_part = _soup.get_text().strip()

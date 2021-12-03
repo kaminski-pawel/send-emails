@@ -25,8 +25,9 @@ class PrepareMessageTest(unittest.TestCase):
         self.message = prepare_message(self.email_data, self.html)
 
     def _get_mail_body_from_message(self, value: str) -> str:
-        return base64.b64decode(value
-            .split('Content-Transfer-Encoding: base64\n\n')[-1] \
+        return base64.b64decode(
+            value
+            .split('Content-Transfer-Encoding: base64\n\n')[-1]
             .split('\n\n')[0]).decode('ansi')
 
     def test_list_receivers_to(self):

@@ -15,9 +15,17 @@ HELP_TEXT = 'Send many html emails customized to different recipients.'
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description=HELP_TEXT)
-    parser.add_argument('-H', '--html', metavar='', required=True,
+    parser.add_argument(
+        '-H',
+        '--html',
+        metavar='',
+        required=True,
         help='Point to an html file to send.')
-    parser.add_argument('-c', '--options', metavar='', default='options.json',
+    parser.add_argument(
+        '-c',
+        '--options',
+        metavar='',
+        default='options.json',
         help='Indicate json file with options (default: options.json).')
     return parser.parse_args()
 
