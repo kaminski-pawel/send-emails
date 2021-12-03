@@ -35,15 +35,13 @@ Please abstain from writing your own html file as you would with web pages. Emai
 
 To send the email:
 
-1. set the email Subject in sender/src/send.py, variable EMAIL_SUBJECT
+1. set the variables in `sender\.env`
 
-2. run (assuming you are at the root of the project):
+2. set the options (email subject, recipients, variables to customize email templates) in json file (default: in options.json)
 
-`python sender/src/send.py 'to@example.com' 'path/to/mail-template.html'`
+3. run (assuming you are at the root of the project):
 
-or
-
-`python sender/src/send.py 'csv-file-with-recipients.csv' 'path/to/mail-template.html'`
+`python sender/src/send.py --html 'path/to/email_template.html'`
 
 ## Set up
 
@@ -51,7 +49,7 @@ or
 
 1. Prepare your virtual environment
 
-`virtualenv venv;venv/Scripts/activate` if on Windows and `virtualenv venv;venv/bin/activate` if on Linux.
+`virtualenv venv;venv/Scripts/activate` if on Windows and `virtualenv venv;source venv/bin/activate` if on Linux.
 
 2. install the dependancies
 
@@ -89,12 +87,6 @@ https://docs.aws.amazon.com/ses/latest/APIReference/API_SendRawEmail.html
 
 ## QA:
 
-##### Testing
-
-Run tests
-
-`python -m unittest discover -s sender/src/tests`
-
 ##### Flake8
 
 Covers pep8 compliance and McCabe code complexity measure.
@@ -105,6 +97,7 @@ Covers pep8 compliance and McCabe code complexity measure.
 
 If needed, the project can be expanded with the following features:
 
+- Bcc, Cc
 - attachments
 - handle the Bounce and Complaint events (see https://github.com/Instapaper/ses-tools developed under MIT)
 - logs (see https://github.com/Instapaper/ses-tools developed under MIT)
