@@ -9,14 +9,16 @@ from utils import open_html_file, open_json_file
 
 
 load_dotenv()
+HELP_TEXT = 'Send many html emails customized to different recipients.'
 
 
 def parse_arguments():
-    parser = argparse.ArgumentParser(description='X')
-    parser.add_argument('-H', '--html', required=True, help='')
-    parser.add_argument('-c', '--options', default='options.json', help='')
+    parser = argparse.ArgumentParser(description=HELP_TEXT)
+    parser.add_argument('-H', '--html', metavar='', required=True,
+        help='Point to an html file to send.')
+    parser.add_argument('-c', '--options', metavar='', default='options.json',
+        help='Indicate json file with options (default: options.json).')
     return parser.parse_args()
-
 
 def send_emails(args):
     for email_data in open_json_file(args.options):
