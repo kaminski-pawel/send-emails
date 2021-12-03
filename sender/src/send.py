@@ -14,12 +14,12 @@ load_dotenv()
 def parse_arguments():
     parser = argparse.ArgumentParser(description='X')
     parser.add_argument('-H', '--html', required=True, help='')
-    parser.add_argument('-c', '--options', required=True, help='')
+    parser.add_argument('-c', '--options', default='options.json', help='')
     return parser.parse_args()
 
 
 def send_emails(args):
-    for email_data in open_json_file(args.options)[:1]:
+    for email_data in open_json_file(args.options):
         send_email(args, email_data)
 
 def send_email(args, email_data):
