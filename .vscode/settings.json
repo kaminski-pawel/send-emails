@@ -1,0 +1,7 @@
+{
+  "python.testing.unittestArgs": ["-v", "-s", "./sender", "-p", "test_*.py"],
+  "python.testing.pytestEnabled": false,
+  "python.testing.unittestEnabled": true,
+  "editor.formatOnSaveMode": "modifications",
+  "editor.formatOnSave": true
+}
