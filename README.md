@@ -75,7 +75,17 @@ Before any mass mailing action please read the tips and best practices below.
 
 #### Security
 
-...
+##### SPF
+
+Remember to add `"v=spf1 include:amazonses.com ~all"` [SPF] record in the appropriate DNS settings (either AWS Route 53 or DNS provider).
+
+##### DKIM
+
+Remember to add appropriate DNS CNAME records in the DNS settings (either in AWS Route 53 or DNS provider).
+
+This programm sends html raw emails using SES SendRawEmail API.
+https://github.com/awsdocs/amazon-ses-developer-guide/blob/master/doc-source/send-email-authentication-dkim-manual.md
+https://docs.aws.amazon.com/ses/latest/APIReference/API_SendRawEmail.html
 
 ## QA:
 
@@ -95,11 +105,12 @@ Covers pep8 compliance and McCabe code complexity measure.
 
 If needed, the project can be expanded with the following features:
 
-- address security issues
 - attachments
 - handle the Bounce and Complaint events (see https://github.com/Instapaper/ses-tools developed under MIT)
-- query email logs (see https://github.com/Instapaper/ses-tools developed under MIT)
+- logs (see https://github.com/Instapaper/ses-tools developed under MIT)
 
 ## Licence:
 
 MIT
+
+[spf]: https://github.com/awsdocs/amazon-ses-developer-guide/blob/master/doc-source/send-email-authentication-spf.md
