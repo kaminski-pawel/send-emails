@@ -87,6 +87,12 @@ https://docs.aws.amazon.com/ses/latest/APIReference/API_SendRawEmail.html
 
 ## QA:
 
+##### Testing
+
+Run tests
+
+`python -m unittest discover -s sender/src/tests`
+
 ##### Flake8
 
 Covers pep8 compliance and McCabe code complexity measure.
